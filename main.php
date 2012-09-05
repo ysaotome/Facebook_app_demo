@@ -97,7 +97,7 @@ $uid = $facebook->getUser();
 
 			} catch(FacebookApiException $e){
 	       		$login_url = $facebook->getLoginUrl($param); 
-	        	echo 'Please <a href="' . $login_url . '">login.</a>';
+	        	echo 'Please exeption <a href="' . $login_url . '">login.</a>';
 		        error_log($e->getType());
 	        	error_log($e->getMessage());
 	      		}   

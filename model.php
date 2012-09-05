@@ -85,7 +85,7 @@ function list_friends(){
 		'scope' => 'user_about_me,friends_about_me,user_relationships,friends_relationships,friends_birthday,publish_stream',
 		'redirect_uri' => 'http://cent8ev-anf-app000.c4sa.net/index.php'
 	);
-	if($uid){
+	if($GLOBALS['uid']){
 		try {
 			//友達一覧取得
 			$user_friends = $GLOBALS['facebook']->api('/me/friends', 'GET');
