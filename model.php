@@ -19,7 +19,6 @@ function config_init(){
 	mb_http_output("utf-8");
 	require_once("php_sdk/facebook.php");
 }
-
 //DBへの接続
 function connect_database(){
 	define('DB_NAME', getenv('C4SA_MYSQL_DB'));
@@ -29,7 +28,7 @@ function connect_database(){
 
 	$dsn = 'mysql:dbname='.DB_NAME.';host='.DB_HOST.';charset=utf8;';
 	try{
-		$db = new PDO($dsn, DB_USER, DB_PASSWORD);
+		$GLOBALS['db'] = new PDO($dsn, DB_USER, DB_PASSWORD);
 	}catch (PDOExeption $e){
 		print('Error:'.$e->getMessage());
 		die();
@@ -37,7 +36,7 @@ function connect_database(){
 }
 
 function get_fb_user_info($fbid){
-	return $facebook->api("/${fbid}", 'GET');
+	return $GLOBALS['facebook']->api("/${fbid}", 'GET');
 }
 
 function http_to_friends($src_id, $dest_id){
@@ -45,7 +44,7 @@ function http_to_friends($src_id, $dest_id){
 		connect_database();
 		$src = get_fb_user_info($src_id);
 		$dest = get_fb_user_info($dest_id);
-		$installed = $facebook->api("/${dest_id}?fields=installed", 'GET');
+		$installed = $GLOBALS['facebook']->api("/${dest_id}?fields=installed", 'GET');
 		if ($dest['relationship_status'] == 'In a relationship' && $src['relationship_status'] == 'Single'){
 			select_err_msg(404);
 		}
@@ -75,14 +74,13 @@ function http_to_friends($src_id, $dest_id){
 
 function select_err_msg($cord){
 	$sql = 'SELECT * FROM err_msg WHERE cord = '.$cord;
-	$exec = $db->query($sql);
+	$exec = $GLOBALS['db']->query($sql);
 	$result = $exec->fetch(PDO::FETCH_ASSOC);
 	require 'templates/result.php';
 	//
 }
 
 function list_friends(){
-    config_init();
 	$param = array(
 		'scope' => 'user_about_me,friends_about_me,user_relationships,friends_relationships,friends_birthday,publish_stream',
 		'redirect_uri' => 'http://cent8ev-anf-app000.c4sa.net/index.php'
@@ -90,7 +88,7 @@ function list_friends(){
 	if($uid){
 		try {
 			//友達一覧取得
-			$user_friends = $facebook->api('/me/friends', 'GET');
+			$user_friends = $GLOBALS['facebook']->api('/me/friends', 'GET');
 			//友達一覧表示処理
 			//var_dump($user_friends);
             //$num = 1;
@@ -107,7 +105,7 @@ function list_friends(){
 }
 
 function login_to_fb($param){
-	$login_url = $facebook->getLoginUrl($param);
+	$login_url = $GLOBALS['facebook']->getLoginUrl($param);
 	//login.phpも作成(あとで)
 	echo 'Please <a href="' . $login_url . '">login.</a>';
 }
