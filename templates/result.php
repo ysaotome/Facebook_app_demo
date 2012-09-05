@@ -8,8 +8,8 @@
 	<body>
     	<h1>HTTP ACCESS TO FACEBOOK FRIENDS</h1>
 		<p>
-			You Access to <img src="https://graph.facebook.com/<?php echo $dest_id ?>/picture" alt="<?php echo $dest_id ?> Profile Photo"><br>
-			<? echo echo $result['cord'].':'.$result['status'] ?>
+			You Access to <img src="https://graph.facebook.com/<?php echo $GLOBALS['dest_id'] ?>/picture" alt="<?php echo $GLOBALS['dest_id'] ?> Profile Photo"><br>
+			<?php echo $result['cord'].':'.$result['status'] ?>
 		</p>
 	</body>
 </html>
