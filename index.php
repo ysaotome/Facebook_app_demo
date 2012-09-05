@@ -2,7 +2,7 @@
 
 require_once 'model.php';
 
-$uri = $_REQUEST['REQUEST_URI'];
+$uri = $_SERVER['REQUEST_URI'];
 if ($uri == '/index.php') {
     list_friends();
 } elseif ($uri == '/index.php/show' && isset($_GET['src_id']) && isset($_GET['dest_id'])) {
