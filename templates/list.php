@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 	<head>
     	<title>HTTP ACCESS TO FACEBOOK FRIENDS</title>

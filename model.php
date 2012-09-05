@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 config_init();
 $config = array();
 $config['appId'] = '345563218861324';
@@ -82,9 +82,10 @@ function select_err_msg($cord){
 }
 
 function list_friends(){
+    config_init();
 	$param = array(
 		'scope' => 'user_about_me,friends_about_me,user_relationships,friends_relationships,friends_birthday,publish_stream',
-		'redirect_uri' => 'http://cent8ev-anf-app000.c4sa.net/main.php'
+		'redirect_uri' => 'http://cent8ev-anf-app000.c4sa.net/index.php'
 	);
 	if($uid){
 		try {
