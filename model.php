@@ -46,25 +46,25 @@ function http_to_friends($src_id, $dest_id){
 		$dest = get_fb_user_info($dest_id);
 		$installed = $GLOBALS['facebook']->api("/${dest_id}?fields=installed", 'GET');
 		if ($dest['relationship_status'] == 'In a relationship' && $src['relationship_status'] == 'Single'){
-			select_err_msg(404);
+			select_err_msg(404,$src, $dest);
 		}
 		else if ($dest['relationship_status'] == 'Married' && $src['relationship_status'] == 'Single'){
 			//echo '401error<br>';
-			select_err_msg(401);
+			select_err_msg(401, $src, $dest);
 		}
 		else if ($installed['installed'] == 'true'){
 			//echo '200<br>';
-			select_err_msg(200);
+			select_err_msg(200, $src, $dest);
 		}
 		else if ($src_id == $dest_id){
-			select_err_msg(500);
+			select_err_msg(500, $src, $dest);
 		}
 		else if ($dest['first_name'] == $src['first_name']){
-			select_err_msg(501);
+			select_err_msg(501, $src, $dest);
 		}
 		else {
 			//echo '403error<br>';
-			select_err_msg(403);
+			select_err_msg(403, $src, $dest);
 		}
 	}
 	else {
@@ -72,7 +72,7 @@ function http_to_friends($src_id, $dest_id){
 	}
 }
 
-function select_err_msg($cord){
+function select_err_msg($cord, $src, $dest){
 	$sql = 'SELECT * FROM err_msg WHERE cord = '.$cord;
 	$exec = $GLOBALS['db']->query($sql);
 	$result = $exec->fetch(PDO::FETCH_ASSOC);
