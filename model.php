@@ -1,8 +1,8 @@
 <?php
 config_init();
 $config = array();
-$config['appId'] = '345563218861324';
-$config['secret'] = '75a5d777cd13c2b60c2393ec00e5c570';
+$config['appId'] = 'YOUR APP ID';
+$config['secret'] = 'YOUR APP SECRET';
 $config['fileUpload'] = false; // optional
 $facebook = new Facebook($config);
 $db;

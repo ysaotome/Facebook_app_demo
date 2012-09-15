@@ -14,8 +14,8 @@ require_once("php_sdk/facebook.php");
 
 $fbid = !is_null($_GET['fbid']) ? $_GET['fbid'] : NULL;
 $config = array();
-$config['appId'] = '345563218861324';
-$config['secret'] = '75a5d777cd13c2b60c2393ec00e5c570';
+$config['appId'] = 'YOUR APP ID';
+$config['secret'] = 'YOUR APP SECRET';
 $config['fileUpload'] = false; // optional
 
 //DBへの接続
