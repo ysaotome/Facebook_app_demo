@@ -1,2 +1,4 @@
-Facebook App on NIFTYCloud C4SA
+[[FacebookアプリをNIFTYCloud C4SAでデプロイする]]
+
+友人一覧を表示して、「友達にHTTPアクセス」すると、エラーメッセージが帰ってくるサンプルプログラムです。
 
